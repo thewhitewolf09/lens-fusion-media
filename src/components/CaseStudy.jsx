@@ -152,7 +152,6 @@ const CaseStudy = () => {
           <a href="#results">See More Results</a>
         </Button>
       </motion.div>
-      ;
     </section>
   );
 };
