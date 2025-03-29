@@ -1,89 +1,138 @@
 import { motion } from "framer-motion";
-import { Target, Calendar, Briefcase, CheckCircle, TrendingUp } from "lucide-react";
+import { TrendingUp, CheckCircle } from "lucide-react";
+import pk1 from "../assets/pk1.webp";
+import pk2 from "../assets/pk2.webp";
+import pk3 from "../assets/pk3.webp";
 
 const painkillers = [
   {
-    icon: <Target size={44} className="text-neon-cyan drop-shadow-[0_0_10px_#00FFFF]" />,
+    image: pk1,
     title: "AI-Powered Lead Generation",
-    description: "We use AI & hyper-targeted data to find real, verified leads who actually need your mortgage services.",
-    effect: "hover:shadow-[0_0_20px_#00FFFF] hover:scale-105",
+    description:
+      "We use AI & hyper-targeted data to find real, verified leads who actually need your mortgage services.",
     highlight: "🚀 3x More Qualified Leads",
+    bgColor: "#A4F755",
   },
   {
-    icon: <Calendar size={44} className="text-neon-magenta drop-shadow-[0_0_10px_#FF00FF]" />,
+    image: pk2,
     title: "Automatic Appointment Booking",
-    description: "Our system schedules warm leads directly into your calendar, so you only focus on closing deals.",
-    effect: "hover:shadow-[0_0_20px_#FF00FF] hover:scale-105 hover:rotate-3",
+    description:
+      "Our system schedules warm leads directly into your calendar, so you only focus on closing deals.",
     highlight: "📅 20+ Meetings Per Month",
+    bgColor: "#C69849",
   },
   {
-    icon: <Briefcase size={44} className="text-neon-green drop-shadow-[0_0_10px_#00FF00]" />,
+    image: pk3,
     title: "Done-for-You Client Conversions",
-    description: "We handle everything from lead warming to follow-ups, so you only spend time with ready-to-buy clients.",
-    effect: "hover:shadow-[0_0_20px_#00FF00] hover:scale-110",
+    description:
+      "We handle everything from lead warming to follow-ups, so you only spend time with ready-to-buy clients.",
     highlight: "💰 4-8 New Clients Monthly",
+    bgColor: "#4BBCCC",
   },
 ];
 
 const Painkillers = () => {
   return (
-    <section id="painkillers" className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12 text-white text-center z-10">
-      
+    <section
+      id="painkillers"
+      className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12"
+    >
       {/* Headline */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-3xl md:text-5xl font-extrabold text-center 
-             bg-gradient-to-r from-[#00FFFF] via-[#FF00FF] to-[#00FFFF] 
-             bg-clip-text text-transparent 
-             drop-shadow-[0_0_25px_#FF00FF] animate-flicker"
+        className="text-4xl md:text-5xl font-extrabold text-center text-black leading-snug drop-shadow-lg"
       >
-        Never Worry About Leads Again. <br /> More Appointments, More Clients.
+        Never Worry About Leads Again.
+        <br />
+        <span className="text-[#860df8] drop-shadow-md">
+          More Appointments, More Clients.
+        </span>
       </motion.h2>
 
-      {/* Three-Box Layout */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+      <div className="mt-12 grid grid-cols-1 gap-10 w-full max-w-5xl">
         {painkillers.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className={`relative flex flex-col items-center justify-center p-8 rounded-2xl 
-                        border border-white/20 backdrop-blur-xl bg-black/20 
-                        transition-all shadow-lg ${item.effect}`}
+            className="relative flex flex-col w-full md:flex-row items-center justify-center p-6"
           >
-            {item.icon}
-            <p className="mt-4 text-2xl font-bold text-white drop-shadow-[0_0_10px_#ffffff]">
-              {item.title}
-            </p>
-            <p className="mt-2 text-md text-gray-300">{item.description}</p>
+            {index % 2 === 0 ? (
+              <>
+                {/* Image Box */}
+                <div className="relative w-[60%] md:w-[55%] flex justify-center mr-8">
+                  <div className="relative w-[100%] bg-black/10 backdrop-blur-md rounded-lg p-2 border border-black/20 shadow-lg">
+                    <div className="absolute inset-0 transform -rotate-4 border-2 border-black/50 rounded-lg pointer-events-none"></div>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="relative rounded-lg w-full h-auto max-h-[300px] object-contain"
+                      style={{ backgroundColor: item.bgColor }}
+                    />
+                  </div>
+                </div>
 
-            {/* Highlighted Benefit */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-4 text-lg font-semibold text-neon-magenta drop-shadow-[0_0_10px_#FF00FF]"
-            >
-              {item.highlight}
-            </motion.p>
+                {/* Text Content */}
+                <div className="flex flex-col w-1/2 md:pl-6 mt-4 md:mt-0 text-white">
+                  <p className="text-4xl font-extrabold drop-shadow-md text-black">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-xl text-gray-800">
+                    {item.description}
+                  </p>
+                  <p className="mt-4 text-xl font-semibold text-[#860df8]">
+                    {item.highlight}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Text Content */}
+                <div className="flex flex-col w-1/2 md:pr-6 mt-4 md:mt-0 text-white">
+                  <p className="text-4xl font-extrabold drop-shadow-md text-black">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-xl text-gray-800">
+                    {item.description}
+                  </p>
+                  <p className="mt-4 text-xl font-semibold text-[#860df8]">
+                    {item.highlight}
+                  </p>
+                </div>
+
+                {/* Image Box */}
+                <div className="relative w-[60%] md:w-[55%] flex justify-center ml-8">
+                  <div className="relative w-[100%] bg-black/10 backdrop-blur-md rounded-lg p-2 border border-black/20 shadow-lg">
+                    <div className="absolute inset-0 transform rotate-4 border-2 border-black/50 rounded-lg pointer-events-none"></div>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="relative rounded-lg w-full h-auto max-h-[300px] object-contain"
+                      style={{ backgroundColor: item.bgColor }}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
           </motion.div>
         ))}
       </div>
 
       {/* 🔥 Extra Proof Section – Dynamic Success Metrics */}
-      <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl">
+      {/* Metrics Section */}
+      <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-4xl">
         {/* Metric 1 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="flex items-center space-x-4 bg-black/30 p-6 rounded-xl backdrop-blur-md border border-white/20"
+          className="flex items-center space-x-4 bg-white/10 p-6 rounded-lg shadow-lg border border-[#860df8]/50 backdrop-blur-lg"
         >
-          <TrendingUp size={36} className="text-neon-cyan drop-shadow-[0_0_15px_#00FFFF]" />
-          <p className="text-2xl font-semibold text-neon-cyan drop-shadow-[0_0_15px_#00FFFF]">
+          <TrendingUp size={36} className="text-cyan-500" />
+          <p className="text-2xl font-semibold text-black">
             +250% Faster Growth 🚀
           </p>
         </motion.div>
@@ -93,15 +142,14 @@ const Painkillers = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
-          className="flex items-center space-x-4 bg-black/30 p-6 rounded-xl backdrop-blur-md border border-white/20"
+          className="flex items-center space-x-4 bg-white/10 p-6 rounded-lg shadow-lg border border-green-400/50 backdrop-blur-lg"
         >
-          <CheckCircle size={36} className="text-neon-green drop-shadow-[0_0_15px_#00FF00]" />
-          <p className="text-2xl font-semibold text-neon-green drop-shadow-[0_0_15px_#00FF00]">
+          <CheckCircle size={36} className="text-green-500" />
+          <p className="text-2xl font-semibold text-black">
             80% Less Time Wasted ⏳
           </p>
         </motion.div>
       </div>
-
     </section>
   );
 };

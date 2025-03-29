@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import Background from "./components/Background";
 import CaseStudy from "./components/CaseStudy";
 import CoreOffer from "./components/CoreOffer";
 import FAQSection from "./components/FAQSection";
@@ -8,6 +7,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Painkillers from "./components/Painkillers";
 import Vision from "./components/Vision";
+import Background from "./components/Background";
 
 function App() {
   const heroRef = useRef(null);

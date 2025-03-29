@@ -1,41 +1,46 @@
 import { motion } from "framer-motion";
-import { TrendingUp, CalendarCheck, CheckCircle } from "lucide-react";
+import {
+  TrendingUp,
+  CalendarCheck,
+  CheckCircle,
+  ArrowRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const stats = [
   {
-    icon: <TrendingUp size={40} className="text-neon-magenta drop-shadow-[0_0_8px_#FF00FF]" />,
-    title: "🔥 60-100 Leads per Month",
-    effect: "hover:scale-105 hover:drop-shadow-[0_0_20px_#FF00FF]",
+    icon: <TrendingUp size={40} className="text-white" />,
+    title: "Consistent Lead Generation",
+    description: "Get 60-100 quality leads every month to grow your business.",
   },
   {
-    icon: <CalendarCheck size={40} className="text-neon-cyan drop-shadow-[0_0_8px_#00FFFF]" />,
-    title: "📅 25-40 Appointments Booked",
-    effect: "hover:scale-105 hover:rotate-3 hover:drop-shadow-[0_0_20px_#00FFFF]",
+    icon: <CalendarCheck size={40} className="text-white" />,
+    title: "Automated Scheduling",
+    description: "Book 25-40 appointments monthly with zero hassle.",
   },
   {
-    icon: <CheckCircle size={40} className="text-neon-green drop-shadow-[0_0_8px_#00FF00]" />,
-    title: "💰 4-8 New Clients Closed",
-    effect: "hover:scale-110 hover:drop-shadow-[0_0_20px_#00FF00]",
+    icon: <CheckCircle size={40} className="text-white" />,
+    title: "High Conversion Rates",
+    description: "Close 4-8 new clients every month with ease.",
   },
 ];
+
+
 
 const CoreOffer = () => {
   return (
     <section
       id="core-offer"
-      className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12 text-white text-center"
+      className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12 text-black text-center bg-white"
     >
       {/* Headline */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-3xl md:text-5xl font-extrabold text-center 
-             bg-gradient-to-r from-[#FF00FF] via-[#00FFFF] to-[#FF00FF] 
-             bg-clip-text text-transparent 
-             drop-shadow-[0_0_25px_#00FFFF] animate-flicker"
+        className="text-3xl md:text-5xl font-extrabold"
       >
-         60-100 Leads. 25-40 Appointments. 4-8 New Clients Monthly.
+        Core Offers
       </motion.h2>
 
       {/* Stats Grid */}
@@ -46,16 +51,41 @@ const CoreOffer = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className={`relative flex flex-col items-center justify-center p-6 rounded-xl 
-                        bg-transparent border border-white/20 backdrop-blur-md 
-                        transition-all shadow-lg ${stat.effect}`}
+            className="relative flex flex-col items-center justify-start p-6 
+                  transition-all "
           >
-            {stat.icon}
-            <p className="mt-4 text-lg font-semibold text-white drop-shadow-[0_0_10px_#ffffff]">
+            {/* Icon Container with Green Background */}
+            <div className="flex items-center justify-center w-24 h-24 rounded-lg bg-[#A855F7]">
+              {stat.icon}
+            </div>
+
+            {/* Title */}
+            <p className="mt-8 text-2xl font-extrabold text-black">
               {stat.title}
+            </p>
+
+            {/* Description */}
+            <p className="mt-2 text-normal text-black-700 text-center">
+              {stat.description}
             </p>
           </motion.div>
         ))}
+      </div>
+
+      {/* Call to Action Button */}
+      <div className="mt-6 hidden md:flex justify-center">
+        <Button
+          variant="default"
+          size="lg"
+          className="px-10 py-7 text-xl font-semibold bg-pink-500 text-white rounded-md shadow-lg flex items-center gap-2 transition-all hover:bg-pink-600 hover:cursor-pointer group"
+          onClick={() => scrollToSection(refs.footerRef)}
+        >
+          <span className="transition-all duration-300 ease-in-out pl-8 tracking-wide">
+            Get Clients Now{" "}
+          </span>
+          <ArrowRight className="w-6 h-6 size-1.5 transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+          <span className="pr-4" />
+        </Button>
       </div>
     </section>
   );

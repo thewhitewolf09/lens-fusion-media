@@ -1,62 +1,73 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import heroImg from "../assets/hero.webp";
 
 const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col md:flex-row items-center justify-center h-screen px-6 md:px-12 text-white pt-[6rem] md:pt-[8rem]"
+      className="relative flex flex-col md:flex-row items-center justify-between h-screen px-6  md:px-12 pt-[6rem] md:pt-[8rem]"
     >
       {/* Left Side - Text Content */}
-      <div className="text-center md:text-left max-w-2xl">
+      <div className="max-w-2xl ">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-extrabold text-neon-cyan drop-shadow-[0_0_15px_#00FFFF]"
+          className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight"
         >
-          UK Mortgage Advisers: Fill Your Pipeline with Consistent Clients
+          Get a{" "}
+          <span className="relative inline-block px-2">
+            <span
+              className="absolute -left-1 -right-1  bottom-0 -z-10 rotate-[-4deg]"
+              style={{
+                background: "var(--lemon, #FFEB3B)", // Fallback color
+                width: "calc(100% + 2px)",
+                height: "70px",
+              }}
+            />
+            FREE
+          </span>{" "}
+          AI-built sales pipeline in minutes
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mt-4 text-lg md:text-xl text-neon-magenta drop-shadow-[0_0_10px_#FF00FF]"
+          className="mt-4 text-lg md:text-xl text-gray-700"
         >
-          Get 25-40 appointments & 4-8 clients per month—on a pay-on-completion
-          basis.
+          A fully automated client acquisition system with ready-to-sell
+          prospects & AI-driven booking. No upfront fees.
         </motion.p>
 
-        {/* CTA Button */}
-
-        <Button
-        asChild
-        className="mt-6 px-8 py-3 text-lg font-bold text-white 
-                   bg-gradient-to-r from-purple-600 to-indigo-500 
-                   rounded-full shadow-lg transition-all 
-                   hover:from-purple-500 hover:to-indigo-400 
-                   hover:shadow-[0_0_20px_#9B5DE5] hover:animate-pulse"
-      >
-        <a href="#book-a-call">Start Growing Your Client Base</a>
-      </Button>
+        {/* Call to Action Button */}
+        {/* Call to Action Button */}
+        <div className="mt-6 hidden md:flex justify-start">
+          <Button
+            variant="default"
+            size="lg"
+            className="px-10 py-7 text-xl font-semibold bg-pink-500 text-white rounded-md shadow-lg flex items-center gap-2 transition-all hover:bg-pink-600 hover:cursor-pointer group"
+            onClick={() => scrollToSection(refs.footerRef)}
+          >
+            <span className="transition-all duration-300 ease-in-out pl-8 tracking-wide">
+              Get Clients Now{" "}
+            </span>
+            <ArrowRight className="w-6 h-6 size-1.5 transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+            <span className="pr-4" />
+          </Button>
+        </div>
       </div>
 
-      {/* Right Side - Video */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="relative mt-10 md:mt-0 md:ml-12 w-full max-w-2xl rounded-xl bg-white/10 backdrop-blur-lg shadow-[0_0_20px_#00FFFF] hover:scale-105 transition-transform overflow-hidden"
-      >
-        <iframe
-          className="w-full h-[250px] md:h-[350px] rounded-xl"
-          src="https://www.youtube.com/embed/Z3T0FqtEpck"
-          title="A-Z of Generating €4 Mortgage Leads – My Exact Strategy"
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </motion.div>
+      {/* Right Side - Image */}
+      <div>
+        <img
+          src={heroImg}
+          alt="Hero Image"
+          className="hidden md:block w-[600px] h-auto object-cover"
+        />
+      </div>
     </section>
   );
 };

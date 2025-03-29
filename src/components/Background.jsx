@@ -1,61 +1,47 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Background = () => {
-  const canvasRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hoverIntensity, setHoverIntensity] = useState(0);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    const updateCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = document.body.scrollHeight; // Full page height
+    const updateMousePosition = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      setHoverIntensity(1);
     };
 
-    const createStars = () => {
-      return [...Array(150)].map(() => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        speed: Math.random() * 0.5,
-      }));
+    const resetIntensity = () => {
+      setHoverIntensity(0);
     };
 
-    let stars = createStars();
+    window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener("mouseleave", resetIntensity);
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
-        ctx.fill();
-        star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
-      });
-
-      requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("mouseleave", resetIntensity);
     };
-
-    updateCanvasSize();
-    window.addEventListener("resize", updateCanvasSize);
-    stars = createStars();
-    animate();
-
-    return () => window.removeEventListener("resize", updateCanvasSize);
   }, []);
 
   return (
-    <motion.div
-      className="fixed inset-0 bg-black -z-10"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <canvas ref={canvasRef} className="absolute inset-0"></canvas>
-    </motion.div>
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-r from-white via-purple-200 to-purple-400">
+      {/* Cursor Glow Effect */}
+      <motion.div
+        className="absolute w-60 h-60 rounded-full bg-purple-500 blur-3xl"
+        animate={{
+          x: mousePosition.x - 100,
+          y: mousePosition.y - 100,
+          scale: hoverIntensity ? 1.8 : 1, // Expands smoothly
+          opacity: hoverIntensity ? 0.7 : 0.4, // Becomes more intense on hover
+        }}
+        transition={{
+          type: "tween",
+          ease: "easeOut",
+          duration: 0.15, // Faster response, but no shimmer
+        }}
+      />
+    </div>
   );
 };
 

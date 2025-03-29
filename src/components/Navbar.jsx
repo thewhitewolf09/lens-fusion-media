@@ -18,7 +18,7 @@ const Navbar = ({ refs }) => {
   // Smooth scrolling function
   const scrollToSection = (sectionRef) => {
     if (sectionRef?.current) {
-      const navbarHeight = 100; // Adjust this if your navbar is taller
+      const navbarHeight = isScrolled ? 70 : 100; // Adjust height dynamically
       const sectionTop = sectionRef.current.offsetTop - navbarHeight;
 
       window.scrollTo({
@@ -32,61 +32,72 @@ const Navbar = ({ refs }) => {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`fixed left-0 top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
-        isScrolled ? "bg-black/80 shadow-lg" : "bg-black/50"
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "bg-white backdrop-blur-lg border-b shadow-md"
+          : "bg-transparent"
       }`}
+      style={{
+        height: isScrolled ? "70px" : "100px",
+        transition: "height 0.3s ease-in-out",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between p-4">
-        {/* Logo */}
-        <motion.div whileHover={{ scale: 1.1 }}>
+      <div
+        className={`mx-auto flex max-w-7xl w-full items-center justify-between px-6 transition-all duration-300 ${
+          isScrolled ? "py-2" : "py-6"
+        }`}
+      >
+        {/* Logo with Neon Glow */}
+        <motion.div
+          whileHover={{ cursor: "pointer" }}
+          className="flex items-center"
+        >
           <img
             src={logo}
-            alt="MortgagePro Logo"
-            className="h-20 w-auto brightness-110 contrast-125 drop-shadow-[0_0_10px_#00FFFF]"
+            alt="Logo"
+            className="h-16 w-auto transition-all duration-300"
+            style={{
+              filter: isScrolled
+                ? "invert(1)"
+                : "invert(1) drop-shadow(0px 0px 15px rgba(180, 100, 255, 0.9))",
+            }}
           />
         </motion.div>
 
         {/* Navigation Links */}
-        <div className="hidden gap-6 md:flex">
+        <div className="hidden md:flex gap-4">
           {[
             { name: "Home", ref: refs.heroRef },
             { name: "Results", ref: refs.caseStudyRef },
-            { name: "How It Works", ref: refs.coreOfferRef },
+            { name: "Core Offers", ref: refs.coreOfferRef },
             { name: "FAQ", ref: refs.faqRef },
             { name: "Vision", ref: refs.visionRef },
           ].map((link, index) => (
             <motion.button
               key={index}
               onClick={() => scrollToSection(link.ref)}
-              whileHover={{
-                color: "#00FFFF",
-                textShadow: "0px 0px 8px #00FFFF",
-              }}
-              className="relative text-lg text-white after:absolute after:bottom-0 after:left-0 
-                         after:h-[2px] after:w-0 after:transition-all after:duration-300 
-                         hover:after:w-full after:bg-neon-cyan"
+              whileHover={{ color: "#A855F7", cursor: "pointer"}} // Purple hover effect
+              className={`text-xl font-normal transition-all duration-300 mx-4 ${
+                isScrolled ? "text-gray-900" : "text-black"
+              }`}
             >
               {link.name}
             </motion.button>
           ))}
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden">
-          <Menu size={28} color="#00FFFF" />
+        {/* CTA Button */}
+        <div className="hidden md:flex">
+          <Button
+            className="px-6 py-5 text-lg font-semibold bg-pink-500 text-white rounded-lg shadow-md transition-all hover:bg-pink-600 hover:cursor-pointer"
+            onClick={() => scrollToSection(refs.footerRef)}
+          >
+            Get Clients Now
+          </Button>
         </div>
-
-        {/* CTA Button - ShadCN */}
-        <Button
-          variant="ghost"
-          className="hidden md:flex items-center justify-center px-6 py-3 text-lg font-semibold tracking-wide 
-             text-[#00eaff] border border-[#00eaff] rounded-xl transition-all 
-             bg-black/20 shadow-[0px_0px_15px_#00eaff] 
-             hover:bg-[#00111f] hover:text-[#80faff] hover:shadow-[0px_0px_25px_#00eaff] hover:scale-105"
-          onClick={() => scrollToSection(refs.footerRef)}
-        >
-          🚀 Get Clients Now
-        </Button>
       </div>
     </motion.nav>
   );
