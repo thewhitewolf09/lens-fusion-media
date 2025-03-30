@@ -25,13 +25,11 @@ const stats = [
   },
 ];
 
-
-
 const CoreOffer = () => {
   return (
     <section
       id="core-offer"
-      className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12 text-black text-center bg-white"
+      className="relative flex flex-col items-center justify-center py-20 px-6 md:px-12 text-black  bg-white"
     >
       {/* Headline */}
       <motion.h2
@@ -51,29 +49,34 @@ const CoreOffer = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="relative flex flex-col items-center justify-start p-6 
+            className="relative flex flex-row md:flex-col items-start justify-start md:p-6 p-2
                   transition-all "
           >
             {/* Icon Container with Green Background */}
-            <div className="flex items-center justify-center w-24 h-24 rounded-lg bg-[#A855F7]">
+            <div className="w-1/4 md:w-full flex items-center justify-center">  
+              <div className="flex items-center justify-center w-18 h-18 md:w-24 md:h-24 rounded-lg bg-[#A855F7]">
               {stat.icon}
             </div>
+            </div>
+            
 
-            {/* Title */}
-            <p className="mt-8 text-2xl font-extrabold text-black">
-              {stat.title}
-            </p>
+            <div className="flex flex-col items-center justify-center pl-4 md:pl-0">
+              {/* Title */}
+              <p className=" md:pt-0 md:mt-8 text-2xl font-extrabold text-black md:text-center">
+                {stat.title}
+              </p>
 
-            {/* Description */}
-            <p className="mt-2 text-normal text-black-700 text-center">
-              {stat.description}
-            </p>
+              {/* Description */}
+              <p className="mt-2 text-normal text-black-700 md:text-center">
+                {stat.description}
+              </p>
+            </div>
           </motion.div>
         ))}
       </div>
 
       {/* Call to Action Button */}
-      <div className="mt-6 hidden md:flex justify-center">
+      <div className="mt-6  md:flex justify-center">
         <Button
           variant="default"
           size="lg"

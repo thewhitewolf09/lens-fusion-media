@@ -1,12 +1,45 @@
-# React + Vite
+# 🚀 LensFusion Media Landing Page  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **high-performance, futuristic** landing page built with **React.js, JavaScript, and Vite**, designed for a sleek and engaging user experience.  
 
-Currently, two official plugins are available:
+## ✨ Features  
+- **Modern UI/UX** – Clean, stylish, and professional design.  
+- **Framer Motion Animations** – Smooth transitions and interactive elements.  
+- **Tailwind CSS** – Fully responsive and optimized styling.  
+- **Fast & Lightweight** – Powered by **Vite** for blazing-fast performance.  
+- **Dark Mode & Glassmorphism Effects** – Aesthetic, high-tech look.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack  
+- **Frontend**: React.js, JavaScript, Tailwind CSS  
+- **Animations**: Framer Motion  
+- **Build Tool**: Vite  
+- **UI Components**: ShadCN/UI (Optional)  
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started  
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1️⃣ Clone the Repo  
+```sh
+git clone https://github.com/your-username/your-repo-name.git  
+cd your-repo-name
+```
+
+### Install Dependencies
+
+```sh
+npm install
+```
+
+### Run The Dev Server
+
+```sh
+npm run dev
+```
+Then, open http://localhost:5173/ in your browser.
+
+### 🌟 Deployment
+
+```sh
+npm run build  
+vercel deploy
+```
+

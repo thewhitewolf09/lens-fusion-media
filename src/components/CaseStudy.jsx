@@ -8,17 +8,48 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ss from "../assets/ss.webp";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import slick1 from "../assets/slick1.webp";
+import slick2 from "../assets/slick2.webp";
+import slick3 from "../assets/slick3.webp";
+import slick4 from "../assets/slick4.webp";
+import slick5 from "../assets/slick5.webp";
+import slick6 from "../assets/slick6.webp";
+import { useState, useRef } from "react";
 
 const CaseStudy = () => {
+  const [dotActive, setDotActive] = useState(0);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    arrows: false, // Hide next/prev buttons (optional)
+    appendDots: (dots) => (
+      <div>
+        <ul className="custom-dots">{dots}</ul>
+      </div>
+    ),
+    beforeChange: (current, next) => setDotActive(next),
+  };
+
+  const images = [slick1, slick2, slick3, slick4, slick5, slick6];
+
   return (
-    <section className="py-16 px-6 md:px-12 text-center bg-white text-black">
+    <section className="py-16 px-6 md:px-12  bg-white text-black">
       {/* Heading */}
 
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-extrabold text-center"
+        className="text-3xl md:text-5xl font-extrabold text-center"
       >
         What customers say
       </motion.h2>
@@ -27,12 +58,36 @@ const CaseStudy = () => {
       </p>
 
       {/* Image Section */}
-      <div className="w-full flex justify-center mt-6">
-        <img
-          src={ss}
-          alt="Case Study Success"
-          className=" w-full  h-auto"
-        />
+      <div className="w-full hidden md:flex justify-center mt-6">
+        <img src={ss} alt="Case Study Success" className=" w-full  h-auto" />
+      </div>
+
+      <div className="w-full max-w-3xl mx-auto mt-10 mb-16 md:hidden">
+        <Slider {...settings}>
+          {images.map((img, index) => (
+            <div key={index} className="flex justify-center">
+              <img
+                src={img}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-auto  object-cover"
+              />
+            </div>
+          ))}
+        </Slider>
+
+        {/* Custom Dot Styling */}
+        <style>
+          {`
+          .custom-dots li button:before {
+            color: ${dotActive ? "#A855F7" : "gray"} !important;
+            font-size: 12px;
+          }
+          .custom-dots li.slick-active button:before {
+            color: #A855F7 !important;
+            font-size: 14px;
+          }
+        `}
+        </style>
       </div>
 
       {/* Case Study: Mortgage Advisers Scaling Fast */}
@@ -42,7 +97,7 @@ const CaseStudy = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight"
+          className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-tight"
         >
           Scaling to 5+ Clients in 30 Days
         </motion.h2>
@@ -142,7 +197,7 @@ const CaseStudy = () => {
       </div>
 
       {/* Call-to-Action Button */}
-      <div className="mt-16 hidden md:flex justify-center">
+      <div className="mt-16  flex justify-center">
         <Button
           variant="default"
           size="lg"

@@ -7,10 +7,19 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col md:flex-row items-center justify-between h-screen px-6  md:px-12 pt-[6rem] md:pt-[8rem]"
+      className="relative flex flex-col md:flex-row items-center justify-evenly h-screen px-6 md:px-12 pt-[6rem] md:pt-[8rem] text-center md:text-left"
     >
+      {/* Hero Image - Appears ABOVE text on mobile */}
+      <div className="w-full flex justify-center mb-6 md:hidden">
+        <img
+          src={heroImg}
+          alt="Hero Image"
+          className="w-[85%] h-auto object-cover "
+        />
+      </div>
+
       {/* Left Side - Text Content */}
-      <div className="max-w-2xl ">
+      <div className="max-w-2xl">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,11 +29,10 @@ const Hero = () => {
           Get a{" "}
           <span className="relative inline-block px-2">
             <span
-              className="absolute -left-1 -right-1  bottom-0 -z-10 rotate-[-4deg]"
+              className="absolute -left-1 -right-1 bottom-0 -z-10 rotate-[-4deg] h-[50px] md:h-[70px]"
               style={{
                 background: "var(--lemon, #FFEB3B)", // Fallback color
                 width: "calc(100% + 2px)",
-                height: "70px",
               }}
             />
             FREE
@@ -42,30 +50,29 @@ const Hero = () => {
           prospects & AI-driven booking. No upfront fees.
         </motion.p>
 
-        {/* Call to Action Button */}
-        {/* Call to Action Button */}
-        <div className="mt-6 hidden md:flex justify-start">
-          <Button
-            variant="default"
-            size="lg"
-            className="px-10 py-7 text-xl font-semibold bg-pink-500 text-white rounded-md shadow-lg flex items-center gap-2 transition-all hover:bg-pink-600 hover:cursor-pointer group"
-            onClick={() => scrollToSection(refs.footerRef)}
-          >
-            <span className="transition-all duration-300 ease-in-out pl-8 tracking-wide">
-              Get Clients Now{" "}
-            </span>
-            <ArrowRight className="w-6 h-6 size-1.5 transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
-            <span className="pr-4" />
-          </Button>
+        {/* Call to Action Button (Visible on all screens) */}
+        <div className="mt-6 flex justify-center md:justify-start">
+        <Button
+          variant="default"
+          size="lg"
+          className="px-10 py-7 text-xl font-semibold bg-pink-500 text-white rounded-md shadow-lg flex items-center gap-2 transition-all hover:bg-pink-600 hover:cursor-pointer group"
+          onClick={() => scrollToSection(refs.footerRef)}
+        >
+          <span className="transition-all duration-300 ease-in-out pl-8 tracking-wide">
+            Get Clients Now{" "}
+          </span>
+          <ArrowRight className="w-6 h-6 size-1.5 transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+          <span className="pr-4" />
+        </Button>
         </div>
       </div>
 
-      {/* Right Side - Image */}
-      <div>
+      {/* Right Side - Image (Only visible on large screens) */}
+      <div className="hidden md:block">
         <img
           src={heroImg}
           alt="Hero Image"
-          className="hidden md:block w-[600px] h-auto object-cover"
+          className="w-[600px] h-auto object-cover"
         />
       </div>
     </section>

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         
         {/* Left Side: Logo & Tagline */}
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-center md:items-start">
           <motion.div
             className="flex items-center cursor-pointer"
           >
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
 
         {/* Middle: Links (Now Properly Centered) */}
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-row md:flex-col justify-between md:items-center space-y-2">
           <a href="/terms" className="underline text-lg hover:text-black transition-all hover:cursor-pointer">
             Terms of Service
           </a>
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         {/* Right Side: Contact Info */}
-        <div className="flex flex-col items-end space-y-2">
+        <div className="flex flex-col items-center md:items-end space-y-2">
           <a href="mailto:emmett@lensfusionn.com" className="text-lg font-semibold hover:text-black transition-all">
             📩 emmett@lensfusionn.com
           </a>

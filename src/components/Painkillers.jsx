@@ -51,7 +51,8 @@ const Painkillers = () => {
         </span>
       </motion.h2>
 
-      <div className="mt-12 grid grid-cols-1 gap-10 w-full max-w-5xl">
+      
+      <div className="hidden mt-12 md:grid grid-cols-1 gap-10 w-full max-w-5xl">
         {painkillers.map((item, index) => (
           <motion.div
             key={index}
@@ -121,6 +122,43 @@ const Painkillers = () => {
         ))}
       </div>
 
+      {/* Mobile Version of Painkillers Section */}
+      <div className="md:hidden mt-12 grid grid-cols-1 gap-2 w-full max-w-5xl">
+        {painkillers.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            className="relative flex flex-col w-full items-center justify-center p-6"
+          >
+            {/* Image Box */}
+            <div className="relative w-full flex justify-center ">
+              <div className="relative w-[100%] bg-black/10 backdrop-blur-md rounded-lg p-2 border border-black/20 shadow-lg">
+                <div className="absolute inset-0 transform -rotate-4 border-2 border-black/50 rounded-lg pointer-events-none"></div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="relative rounded-lg w-full h-auto max-h-[300px] object-contain"
+                  style={{ backgroundColor: item.bgColor }}
+                />
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="flex flex-col w-full text-center mt-12 md:mt-0 text-white">
+              <p className="text-4xl font-extrabold drop-shadow-md text-black">
+                {item.title}
+              </p>
+              <p className="mt-2 text-xl text-gray-800">{item.description}</p>
+              <p className="mt-4 text-xl font-semibold text-[#860df8]">
+                {item.highlight}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
       {/* 🔥 Extra Proof Section – Dynamic Success Metrics */}
       {/* Metrics Section */}
       <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-4xl">
@@ -132,7 +170,7 @@ const Painkillers = () => {
           className="flex items-center space-x-4 bg-white/10 p-6 rounded-lg shadow-lg border border-[#860df8]/50 backdrop-blur-lg"
         >
           <TrendingUp size={36} className="text-cyan-500" />
-          <p className="text-2xl font-semibold text-black">
+          <p className="text-xl md:text-2xl font-semibold text-black">
             +250% Faster Growth 🚀
           </p>
         </motion.div>
@@ -145,7 +183,7 @@ const Painkillers = () => {
           className="flex items-center space-x-4 bg-white/10 p-6 rounded-lg shadow-lg border border-green-400/50 backdrop-blur-lg"
         >
           <CheckCircle size={36} className="text-green-500" />
-          <p className="text-2xl font-semibold text-black">
+          <p className="text-xl md:text-2xl font-semibold text-black">
             80% Less Time Wasted ⏳
           </p>
         </motion.div>

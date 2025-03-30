@@ -96,15 +96,14 @@ const Vision = ({ refs }) => {
       {/* Banner with Light Gradient Effect */}
       <div className="mt-16 relative w-full text-center py-12">
         {/* Headline */}
-        <h3 className="relative text-3xl md:text-5xl mb-14 font-bold text-black font-extrabold">
+        <h3 className="relative text-3xl md:text-5xl mb-14  text-black font-extrabold">
           Join the{" "}
           <span className="relative inline-block px-2">
             <span
-              className="absolute -left-1 -right-1 -top-1 bottom-0 -z-10 rotate-[-4deg]"
+              className="absolute -left-1 -right-1 -top-1 bottom-0 -z-10 rotate-[-4deg] md:h-[55px] h-[45px]"
               style={{
                 background: "var(--lemon, #FFEB3B)", // Fallback color
                 width: "calc(100% + 2px)",
-                height: "55px",
               }}
             />
             Future
@@ -113,7 +112,7 @@ const Vision = ({ refs }) => {
         </h3>
 
         {/* Call to Action Button */}
-        <div className="mt-6 hidden md:flex justify-center">
+        <div className="mt-6 flex justify-center">
           <Button
             variant="default"
             size="lg"

@@ -64,7 +64,7 @@ const FAQSection = () => {
             <div key={index} className="border-b border-gray-700 pb-4">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center text-xl w-full py-4  font-medium hover:text-gray-300 transition-all hover:cursor-pointer"
+                className="flex justify-between items-center text-start text-xl w-full py-4  font-medium hover:text-gray-300 transition-all hover:cursor-pointer"
               >
                 {faq.question}
                 <motion.div
