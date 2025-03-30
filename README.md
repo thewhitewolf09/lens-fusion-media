@@ -20,7 +20,7 @@ A **high-performance, futuristic** landing page built with **React.js, JavaScrip
 ### 1️⃣ Clone the Repo  
 ```sh
 git clone https://github.com/thewhitewolf09/lens-fusion-media.git 
-cd your-repo-name
+cd lens-fusion-media
 ```
 
 ### Install Dependencies
